@@ -25,7 +25,7 @@ export default class Main extends cc.Component {
     this.webSocket.addEventListener("close", this.onWebSocketClose.bind(this));
     setInterval(() => {
       this.sendMessageToServer("client A");
-    }, 100);
+    }, 1000);
   }
 
   private onWebSocketOpen() {
