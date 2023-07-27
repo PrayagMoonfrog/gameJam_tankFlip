@@ -15,7 +15,7 @@ export default class Main extends cc.Component {
   }
   connectToServer() {
     console.log("connectToServer");
-    const serverURL = "ws://localhost:8080/"; // Replace with your server URL
+    const serverURL = "wss://igludo-dev16-01.ludoclub.in"; // Replace with your server URL
     this.webSocket = new WebSocket(serverURL);
 
     // Register WebSocket event listeners
@@ -25,7 +25,7 @@ export default class Main extends cc.Component {
     this.webSocket.addEventListener("close", this.onWebSocketClose.bind(this));
     setInterval(() => {
       this.sendMessageToServer("client A");
-    }, 1000);
+    }, 100);
   }
 
   private onWebSocketOpen() {
