@@ -1,9 +1,14 @@
+import BulletComponent from "./BulletComponent";
+
 const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class PlayerComponent extends cc.Component {
   @property(cc.Node)
   gun: cc.Node = null;
+
+  @property(cc.Prefab)
+  bullet: cc.Prefab = null;
 
   public moveSpeed: number = 0.02;
   public rotateSpeed: number = 1;
@@ -17,6 +22,11 @@ export default class PlayerComponent extends cc.Component {
     const thetaDeg = this.getAngle(dir);
     const rot = this.rotateSpeed * thetaDeg;
     this.gun.rotation = 450 - rot;
+  }
+
+  fire() {
+    const bullet = cc.instantiate(this.bullet);
+    bullet.getComponent(BulletComponent).move(cc.v2(1, 0));
   }
 
   getAngle(dir: cc.Vec2) {

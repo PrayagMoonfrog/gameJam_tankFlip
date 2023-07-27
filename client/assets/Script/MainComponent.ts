@@ -1,7 +1,12 @@
+import PlayerComponent from "./PlayerComponent";
+
 const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class MainComponent extends cc.Component {
+  @property(PlayerComponent)
+  player: PlayerComponent = null;
+
   start() {
     this.node.on(cc.Node.EventType.TOUCH_START, this.onTouchMove, this, true);
     this.node.on(cc.Node.EventType.TOUCH_MOVE, this.onTouchMove, this, true);
@@ -65,5 +70,9 @@ export default class MainComponent extends cc.Component {
     } else {
       console.error("WebSocket is not open. Cannot send message.");
     }
+  }
+
+  fireBullet() {
+    this.player.fire();
   }
 }
